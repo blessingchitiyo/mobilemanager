@@ -11,9 +11,9 @@ public abstract class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "date_created", nullable = false)
+	@Column(name = "dateCreated", nullable = false)
 	private LocalDateTime dateCreated;
-	@Column(name = "date_modified", nullable = false)
+	@Column(name = "dateModified", nullable = false)
 	private LocalDateTime dateModified;
 
 	public Long getId() {

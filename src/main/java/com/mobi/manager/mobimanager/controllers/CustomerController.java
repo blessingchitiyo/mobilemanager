@@ -1,7 +1,9 @@
 package com.mobi.manager.mobimanager.controllers;
 
+import com.mobi.manager.mobimanager.common.CreateCustomerResponse;
 import com.mobi.manager.mobimanager.dtos.CustomerDto;
 import com.mobi.manager.mobimanager.dtos.ModelDto;
+import com.mobi.manager.mobimanager.entities.Customer;
 import com.mobi.manager.mobimanager.exceptions.errors.ModelNotFoundException;
 import com.mobi.manager.mobimanager.services.CustomerService;
 import com.mobi.manager.mobimanager.services.ModelService;
@@ -26,14 +28,21 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private ResponseEntity<CustomerDto> create(@RequestBody CustomerDto request) {
+    private ResponseEntity<CreateCustomerResponse> create(@RequestBody CustomerDto request) {
         return new ResponseEntity<>(customerService.create(request), HttpStatus.CREATED);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<CustomerDto>> findAllCustomers() {
-        List<CustomerDto> response = customerService.findAllCustomers();
+    public ResponseEntity<List<Customer>> findAllCustomers() {
+        List<Customer> response = customerService.findAllCustomers();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCustomer(long customerId) {
+        customerService.deleteById(customerId);
+
     }
 }

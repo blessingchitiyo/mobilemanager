@@ -24,7 +24,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     @Transactional
-    public ModelDto create(ModelDto request) {
+    public Model create(ModelDto request) {
 
         //Check for existence of model
         if (existsByName(request.getName()))
@@ -43,29 +43,27 @@ public class ModelServiceImpl implements ModelService {
 
         log.info("Model {} created", request.getName());
 
-        return response;
+        return model;
     }
 
     @Override
-    public ModelDto findByName(String name) {
+    public Model findByName(String name) {
         return null;
     }
 
-    public ModelDto findByModelId(Long Id) {
+    public Model findByModelId(Long Id) {
         Optional<Model> optModel = modelRepository.findById(Id);
-        Model model = optModel.get();
-        return ModelMapper.toDto(model);
+       return optModel.get();
+        //return ModelMapper.toDto(model);
     }
 
     @Override
-    public List<ModelDto> findAllModels() {
-        List<Model> models = modelRepository.findAll();
-        return models.stream().map(ModelMapper::toDto)
-                .collect(Collectors.toList());
+    public List<Model> findAllModels() {
+       return modelRepository.findAll();
     }
 
     @Override
-    public ModelDto deleteById(Long Id) {
+    public Model deleteById(Long Id) {
         return null;
     }
 
@@ -76,10 +74,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public boolean existsByName(String name) {
-        if (modelRepository.existsByName(name)) {
-            return true;
-        }
-        return false;
+        return modelRepository.existsByName(name);
     }
 
 }

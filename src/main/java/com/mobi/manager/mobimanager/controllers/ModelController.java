@@ -1,6 +1,7 @@
 package com.mobi.manager.mobimanager.controllers;
 
 import com.mobi.manager.mobimanager.dtos.ModelDto;
+import com.mobi.manager.mobimanager.entities.Model;
 import com.mobi.manager.mobimanager.exceptions.ApiExceptionHandler;
 import com.mobi.manager.mobimanager.exceptions.errors.ModelNotFoundException;
 import com.mobi.manager.mobimanager.services.ModelService;
@@ -25,15 +26,15 @@ public class ModelController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private ResponseEntity<ModelDto> create(@RequestBody ModelDto createModelRequest) {
-        ModelDto model = modelService.create(createModelRequest);
+    private ResponseEntity<Model> create(@RequestBody ModelDto createModelRequest) {
+        Model model = modelService.create(createModelRequest);
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
     @GetMapping("{Id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ModelDto> findByModelId(@PathVariable("Id") Long Id) {
-        ModelDto response = modelService.findByModelId(Id);
+    public ResponseEntity<Model> findByModelId(@PathVariable("Id") Long Id) {
+        Model response = modelService.findByModelId(Id);
         if (response == null)
             throw new ModelNotFoundException("Model not found");
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -41,8 +42,8 @@ public class ModelController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<ModelDto>> findAllModels() {
-        List<ModelDto> response = modelService.findAllModels();
+    public ResponseEntity<List<Model>> findAllModels() {
+        List<Model> response = modelService.findAllModels();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -10,15 +10,15 @@ import lombok.Setter;
 @Setter
 public class Supplier extends BaseEntity {
 
-	@Column(name = "supplier_name", nullable = false, length = 100)
-	private String supplier_name;
+	@Column(name = "supplierName", nullable = false, length = 100)
+	private String supplierName;
 
-	@Column(name = "mobile_number", nullable = false, length = 50)
+	@Column(name = "mobileNumber", nullable = false, length = 50)
 	private String mobileNumber;
 
 	@Embedded
 	@AttributeOverrides({
-			@AttributeOverride(name = "name", column = @Column(name = "location_name"))
+			@AttributeOverride(name = "name", column = @Column(name = "locationName"))
 	})
 	private Location location;
 

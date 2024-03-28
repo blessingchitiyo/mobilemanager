@@ -9,9 +9,9 @@ import lombok.Data;
 public class MainStock extends BaseEntity{
 
     @Column(name = "quantity", nullable = false, length = 10)
-    private String quantity;
+    private Integer quantity;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "model_id", nullable = false)
+    @JoinColumn(name = "modelId", nullable = false)
     private Model model;
 }

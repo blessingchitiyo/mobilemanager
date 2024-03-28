@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SupplierDto {
 
-    private String supplier_name;
+    private String supplierName;
     private String mobileNumber;
     private LocationDto location;
 }

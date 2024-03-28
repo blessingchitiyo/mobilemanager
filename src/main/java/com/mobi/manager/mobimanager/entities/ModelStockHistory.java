@@ -4,12 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "sub_stock")
+@Table(name = "modelstockhistory")
 @Data
-public class SubStock extends BaseEntity {
-
-    @Column(name = "costPrice", nullable = false, length = 10)
-    private Double costPrice;
+public class ModelStockHistory extends BaseEntity {
 
     @Column(name = "quantity", nullable = false, length = 10)
     private Integer quantity;
@@ -17,8 +14,4 @@ public class SubStock extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "modelId", nullable = false)
     private Model model;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "customerId", nullable = false)
-    private Customer customer;
 }
